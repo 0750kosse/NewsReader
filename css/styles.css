@@ -1,0 +1,111 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin : 0;
+  padding: 0;
+  font-family: helvetica,arial,sans-serif;
+} 
+
+/* NAV BAR */
+
+.nav-bar {
+  display: flex;
+  flex-direction: row;
+  background-color: #120304;
+}
+
+.nav-bar__logo {
+  width: 25%;
+  height: auto;
+  margin-left: -3%; 
+} 
+
+.nav-bar__title {
+  line-height: 1.6;
+  margin-left: -5%;
+  color: #fff;
+}
+
+/* STOCK MARKETS */
+.stock-markets {
+  display: flex;
+  flex-direction: row;
+  background-color: #050100;
+  justify-content: space-around;
+  padding: 2% 0;
+  font-size: 13px;
+}
+
+.stock-markets__ftse,
+.stock-markets__ibex,
+.stock-markets__wallstreet {
+  list-style: none;
+  color : #fff;
+}
+
+/* SECTION HEADER*/
+
+.section-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 0 3%;
+}
+/* MAIN STORY */
+
+.breaking_news {
+  max-width: 100%;
+}
+
+.article {  
+  margin-bottom: 5%;
+  max-width: 100%;
+}
+
+.article__content {
+  margin: 0 5%;
+}
+
+.article__title {
+  text-decoration: none;
+  color: #120304;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.article__image > img { 
+  max-width: 100%;
+}
+
+.article:nth-child(n + 2) {
+  display: flex;
+  font-size: 16px;
+}
+
+/* HIGHLIGHTS */
+
+.highlights {
+  display: flex;
+  flex-direction: row wrap;
+  padding: 5% 0;
+  border-bottom: 1px solid lightslategrey;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.highlights__image {
+  max-width:45%;
+  height:auto;
+  margin:0 1%;
+}
+
+.highlights__title {
+  max-width:45%;
+  margin:0 3%;
+  text-decoration: none;
+  color: #120304;
+  font-size: 16px;
+  font-weight: 700;
+}
