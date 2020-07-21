@@ -1,6 +1,10 @@
 const breaking_news = document.querySelector("#breaking_news");
 const main_story = document.querySelector('#main_story');
-const newsSections = document.querySelector('#nav-bar__categories')
+const newsSections = document.querySelector('#categories__dropdown')
+
+document.querySelector(".fa-bars").addEventListener("click", () => {
+  document.querySelector("#categories__dropdown").classList.toggle('active')
+})
 
 const proxyUrl = "https://cors-anywhere.herokuapp.com/";
 const topHeadlines = "https://newsapi.org/v2/top-headlines?country=gb&apiKey=09cd5587d3d84d849544b0097b798326";
@@ -42,9 +46,8 @@ function parseCategories(sources) {
   const links = sources.map(source => {
     const { category } = source;
     return `
-      <ul>
-        <li>${category}</li>
-      </ul>`}).join("");
+        <li class="category">${category}</li>
+        `}).join("");
   return links;
 }
 
