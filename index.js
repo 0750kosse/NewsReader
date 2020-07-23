@@ -6,6 +6,10 @@ document.querySelector(".fa-bars").addEventListener("click", () => {
   document.querySelector("#categories__dropdown").classList.toggle('active')
 })
 
+document.querySelector(".fa-search").addEventListener("click", () => {
+  document.querySelector(".form-container").classList.toggle('active')
+})
+
 const proxyUrl = "https://cors-anywhere.herokuapp.com/";
 const topHeadlines = "https://newsapi.org/v2/top-headlines?country=gb&apiKey=09cd5587d3d84d849544b0097b798326";
 const newsCategories = "https://newsapi.org/v2/sources?country=gb&apiKey=09cd5587d3d84d849544b0097b798326";
@@ -50,6 +54,8 @@ function parseCategories(sources) {
         `}).join("");
   return links;
 }
+
+
 
 function getLatestNews() {
   fetch(`${proxyUrl}${topHeadlines}`)
