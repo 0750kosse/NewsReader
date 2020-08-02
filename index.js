@@ -1,6 +1,9 @@
 const breaking_news = document.querySelector("#breaking_news");
 const main_story = document.querySelector('#main_story');
-const newsSections = document.querySelector('#categories__dropdown')
+const searchedNews = document.querySelector('#user-search')
+const newsSections = document.querySelector('#categories__dropdown');
+const form = document.querySelector("#searchField");
+const input = document.querySelector('#form-box__input');
 
 document.querySelector(".fa-bars").addEventListener("click", () => {
   document.querySelector("#categories__dropdown").classList.toggle('active')
@@ -10,16 +13,12 @@ document.querySelector(".fa-search").addEventListener("click", () => {
   document.querySelector(".form-container").classList.toggle('active')
 })
 
-const proxyUrl = "https://cors-anywhere.herokuapp.com/";
-const topHeadlines = "https://newsapi.org/v2/top-headlines?country=gb&apiKey=09cd5587d3d84d849544b0097b798326";
-const newsCategories = "https://newsapi.org/v2/sources?country=gb&apiKey=09cd5587d3d84d849544b0097b798326";
+form.addEventListener("submit", userSearch)
 
-function handleSubmit(e) {
-  event.preventDefault()
-  const userInput = document.querySelector(".inputValue").value;
-  console.log("userText", userInput);
-  return userInput;
-}
+const apikey = "09cd5587d3d84d849544b0097b798326"
+const proxyUrl = "https://cors-anywhere.herokuapp.com/";
+const topHeadlines = `https://newsapi.org/v2/top-headlines?country=gb&apiKey=${apikey}`;
+const newsCategories = `https://newsapi.org/v2/sources?country=gb&apiKey=${apikey}`;
 
 function parseMain(story) {
   const { title, url, urlToImage, description } = story;
@@ -55,7 +54,16 @@ function parseCategories(sources) {
   return links;
 }
 
-
+function parseNewsSearch(searched) {
+  const parsed = searched.map(search => {
+    const { title, url, urlToImage } = search;
+    return `
+        <div class="highlights">
+          <img src="${urlToImage ? urlToImage : "No image"}" class="highlights__image"/>
+          <a href="${url}" class="highlights__title">${title} </a>
+        </div >`}).join("");
+  return parsed;
+}
 
 function getLatestNews() {
   fetch(`${proxyUrl}${topHeadlines}`)
@@ -78,5 +86,15 @@ function newsByCategory() {
     });
 }
 
-getLatestNews();
-newsByCategory();
+function userSearch(e) {
+  e.preventDefault();
+  const searchContent = input.value;
+  const newsByUser = `https://newsapi.org/v2/top-headlines?q=${searchContent}&apiKey=${apikey}`;
+  fetch(`${newsByUser}`)
+    .then(res => res.json())
+    .then(data => searchedNews.innerHTML = parseNewsSearch(data.articles))
+}
+
+getLatestNews()
+
+
