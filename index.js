@@ -5,20 +5,24 @@ const newsSections = document.querySelector('#categories__dropdown');
 const form = document.querySelector("#searchField");
 const input = document.querySelector('#form-box__input');
 
-document.querySelector(".fa-bars").addEventListener("click", () => {
-  document.querySelector("#categories__dropdown").classList.toggle('active')
-})
-
-document.querySelector(".fa-search").addEventListener("click", () => {
-  document.querySelector(".form-container").classList.toggle('active')
-})
-
-form.addEventListener("submit", userSearch)
-
 const apikey = "09cd5587d3d84d849544b0097b798326"
 const proxyUrl = "https://cors-anywhere.herokuapp.com/";
 const topHeadlines = `https://newsapi.org/v2/top-headlines?country=gb&apiKey=${apikey}`;
 const newsCategories = `https://newsapi.org/v2/sources?country=gb&apiKey=${apikey}`;
+
+function eventListeners() {
+  document.querySelector(".fa-bars").addEventListener("click", () => {
+    document.querySelector("#categories__dropdown").classList.toggle('active')
+  })
+  document.querySelector(".fa-search").addEventListener("click", () => {
+    document.querySelector(".form-container").classList.toggle('active')
+  })
+  form.addEventListener("submit", userSearch)
+}
+
+function clearArea() {
+  document.getElementById('form-box__input').value = "";
+}
 
 function parseMain(story) {
   const { title, url, urlToImage, description } = story;
@@ -92,9 +96,11 @@ function userSearch(e) {
   const newsByUser = `https://newsapi.org/v2/top-headlines?q=${searchContent}&apiKey=${apikey}`;
   fetch(`${newsByUser}`)
     .then(res => res.json())
-    .then(data => searchedNews.innerHTML = parseNewsSearch(data.articles))
+    .then(data => searchedNews.innerHTML = parseNewsSearch(data.articles));
+  clearArea();
 }
 
-getLatestNews()
-
+eventListeners();
+getLatestNews();
+newsByCategory();
 
