@@ -4,6 +4,7 @@ const searchedNews = document.querySelector('#user-search')
 const newsSections = document.querySelector('#categories__dropdown');
 const form = document.querySelector("#searchField");
 const input = document.querySelector('#form-box__input');
+const logo = document.querySelector('.nav-bar__title');
 
 const apikey = "09cd5587d3d84d849544b0097b798326"
 const proxyUrl = "https://cors-anywhere.herokuapp.com/";
@@ -12,16 +13,19 @@ const newsCategories = `https://newsapi.org/v2/sources?country=gb&apiKey=${apike
 
 function eventListeners() {
   document.querySelector(".fa-bars").addEventListener("click", () => {
-    document.querySelector("#categories__dropdown").classList.toggle('active')
+    document.querySelector("#categories__dropdown").classList.toggle('user-search')
   })
   document.querySelector(".fa-search").addEventListener("click", () => {
     document.querySelector(".form-container").classList.toggle('active')
   })
-  form.addEventListener("submit", userSearch)
-}
 
-function clearArea() {
-  document.getElementById('form-box__input').value = "";
+  form.addEventListener("submit", userSearch)
+
+  document.querySelector('#close').addEventListener('click', () => {
+    document.querySelector('.form-container').classList.toggle('active')
+  })
+
+  logo.addEventListener('click', refreshPage)
 }
 
 function parseMain(story) {
@@ -98,6 +102,14 @@ function userSearch(e) {
     .then(res => res.json())
     .then(data => searchedNews.innerHTML = parseNewsSearch(data.articles));
   clearArea();
+}
+
+function clearArea() {
+  document.getElementById('form-box__input').value = "";
+}
+
+function refreshPage() {
+  location.reload();
 }
 
 eventListeners();

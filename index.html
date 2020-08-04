@@ -27,9 +27,14 @@
     </div>
     <div id="form-container" class="form-container">
       <form action="" class="search-box" id="searchField">
-        <h3 class="search-box__header">SEARCH</h3>
-        <input type="text" class="search-box__field" id="form-box__input" placeholder="Search for news...">
-        <button class="search-box__button" id="search-box__button">Go</button>
+        <div class="search-box__container">
+          <i class="far fa-times-circle fa-2x " id="close"></i>
+          <h3 class="search-box__header">SEARCH</h3>
+        </div>
+        <div class="input-container">
+          <input type="text" class="search-box__field" id="form-box__input" placeholder="Search for news...">
+          <button class="search-box__button" id="search-box__button">Go</button>
+        </div>
     </div>
     <div class="user-search" id="user-search"></div>
     <div class="stock-markets">
@@ -41,7 +46,6 @@
       <h3 class="section-header__top">TOP NEWS</h3>
       <h4 class="section-header__wire">THE WIRE ></h4>
     </div>
-
     <div class="main_story" id="main_story"></div>
     <div class="breaking_news" id="breaking_news"></div>
     <footer class="main-footer">Footer</footer>

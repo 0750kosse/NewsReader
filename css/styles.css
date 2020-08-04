@@ -32,6 +32,7 @@ body {
   margin-left: -5%;
   color : #999;
 }
+
 .nav-bar__icons {
   display: flex;
   align-items: center;
@@ -74,30 +75,46 @@ body {
 /* SEARCH BAR */
 
 .user-search {
-  margin-top: 10%;
+  display: block;
 }
 
 .form-container {
   display: none;
-  margin: -10% 0;
+  background-color:#333;
 }
 
 .active {
-  display: block;
+  display: flex;
+  flex-flow: row wrap;
 }
 
 .search-box {
-  background-color:#333;
-  height: 300px;
+  width: 100%;
+  height: 180px;
   color: #999;
-  margin-top: 9%;
-  padding: 10% 0 0 5%;
+  margin-top: 2%;
+  padding: 5% 0 0 10%;
+}
+
+.search-box__container {
+  display: flex;
+  flex-flow: row-reverse;
+  border-bottom: 1px solid #999;
+  width: 95%;
+  justify-content: space-between;
+  margin-top:-3%;
 }
 
 .search-box__header {
-  border-bottom: 1px solid #999;
-  padding-bottom: 2%;
-  width: 95%;
+  padding-bottom: 1%;
+}
+
+.fa-times-circle  {
+  margin-top: 4%;
+}
+
+input {
+  margin-top: 8%;
 }
 
 .search-box__field,
@@ -106,16 +123,15 @@ body {
 }
 
 .search-box__field {
-  width: 85%;
+  width: 80%;
   font-size: 18px;
 }
 
 .search-box__button {
   margin-left: -5%;
-  background-color: #808080;
+  background-color: #cc5500;
   color: #fff;
-  padding: 0px 15px
-
+  padding: 0px 15px;
 }
 
 /* STOCK MARKETS */
