@@ -31,6 +31,7 @@ body {
   line-height: 1.6;
   margin-left: -5%;
   color : #999;
+  align-self: center;
 }
 
 .nav-bar__icons {
@@ -81,6 +82,7 @@ body {
 .form-container {
   display: none;
   background-color:#333;
+  height: 10rem;
 }
 
 .active {
@@ -102,19 +104,20 @@ body {
   border-bottom: 1px solid #999;
   width: 95%;
   justify-content: space-between;
-  margin-top:-3%;
+  align-items: center;
+  margin-top:-8%;
 }
 
 .search-box__header {
   padding-bottom: 1%;
 }
 
-.fa-times-circle  {
-  margin-top: 4%;
-}
-
 input {
   margin-top: 8%;
+}
+
+.input-container {
+  margin-top: 6%;
 }
 
 .search-box__field,
@@ -125,6 +128,7 @@ input {
 .search-box__field {
   width: 80%;
   font-size: 18px;
+  margin: 0 auto;
 }
 
 .search-box__button {
@@ -240,12 +244,22 @@ input {
     line-height: 2.5;
   }
 
+  .form-container {
+    height: 12rem;;
+  }
+
   .stock-markets {
     font-size: 18px;
   }
 
+  .input-container {
+    margin-top:5%;
+  }
+
   .article {
     margin-bottom: 0;
+    width: 90%;
+    margin: 0 auto;
   }
 
   .article__content {
@@ -300,7 +314,7 @@ input {
 
 @media only screen and (min-width: 1201px) { 
   body {
-    max-width: 80%;
+    max-width: 75%;
     margin: 0 auto;
   }
 
@@ -311,6 +325,14 @@ input {
   .nav-bar__title {
     font-size: 48px;
     line-height: 2.5;
+  }
+
+  .form-container {
+    height: 14rem;;
+  }
+
+  .input-container {
+    margin-top:3%;
   }
 
   .stock-markets {
