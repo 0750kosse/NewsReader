@@ -44,11 +44,14 @@ function parseMain(story) {
 
 function parseNews(news) {
   const parsed = news.slice(1).map(feed => {
-    const { title, url, urlToImage } = feed;
+    const { title, url, urlToImage, description } = feed;
     return `
         <div class="highlights">
           <img src="${urlToImage ? urlToImage : "No image"}" class="highlights__image"/>
-          <a href="${url}" class="highlights__title">${title} </a>
+          <div class="highlights__content">
+            <a href="${url}" class="highlights__title">${title} </a>
+            <p class="highlights__description">${description ? description : "No description"}</p>
+          </div>
         </div >`}).join("");
   return parsed;
 }

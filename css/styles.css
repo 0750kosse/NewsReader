@@ -135,6 +135,7 @@ input {
 }
 
 /* STOCK MARKETS */
+
 .stock-markets {
   display: flex;
   flex-direction: row;
@@ -163,6 +164,7 @@ input {
 .section-header__wire {
   color : #999;
 }
+
 /* MAIN STORY */
 
 .breaking_news {
@@ -183,6 +185,10 @@ input {
   color: #120304;
   font-size: 22px;
   font-weight: 700;
+}
+
+.article__description {
+  display: none;
 }
 
 .article__description {
@@ -212,14 +218,155 @@ input {
 .highlights__image {
   max-width:45%;
   height:auto;
-  margin:0 1%;
+  margin-right: 5%;
 }
 
 .highlights__title {
   max-width:45%;
-  margin:0 3%;
   text-decoration: none;
   color: #120304;
   font-size: 18px;
   font-weight: 700;
+}
+
+.highlights__description {
+  display: none;
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1200px) {
+
+  .nav-bar__title {
+    font-size: 48px;
+    line-height: 2.5;
+  }
+
+  .stock-markets {
+    font-size: 18px;
+  }
+
+  .article {
+    margin-bottom: 0;
+  }
+
+  .article__content {
+    margin: 2% 5% 0 5%;
+  }
+
+  .article__title,
+  .article__description{
+    font-size: 26px;
+  }
+
+  .highlights__title,
+  .highlights__description {
+    font-size: 23px;
+  }
+
+  .article__description {
+    border-bottom: 1px solid lightgray;
+    padding-bottom: 5%;
+  }
+
+  .article,
+  .highlights {
+    display: flex;
+    flex-flow: row wrap;
+    margin-bottom: 3%;
+  }
+
+  .highlights__image {
+    margin-top: -5%;
+  }
+ 
+  .article__description,
+  .highlights__description {
+    display : flex;
+  }
+
+.highlights__content {
+  display: flex;
+    flex-flow: row wrap;
+    max-width: 45%;
+  }
+
+.highlights__title {
+  max-width: 90%;
+  }
+
+.category {
+    font-size: 24px;
+  }
+}
+
+@media only screen and (min-width: 1201px) { 
+  body {
+    max-width: 80%;
+    margin: 0 auto;
+  }
+
+  .highlights {
+    width: 100%;
+  }
+
+  .nav-bar__title {
+    font-size: 48px;
+    line-height: 2.5;
+  }
+
+  .stock-markets {
+    font-size: 18px;
+  }
+
+  .article {
+    margin-bottom: 0;
+  }
+
+  .article__content {
+    margin: 2% 5% 0 5%;
+  }
+
+  .article__title,
+  .article__description{
+    font-size: 26px;
+  }
+
+  .highlights__title,
+  .highlights__description {
+    font-size: 23px;
+  }
+
+  .article__description {
+    border-bottom: 1px solid lightgray;
+    padding-bottom: 5%;
+  }
+
+  .article,
+  .highlights {
+    display: flex;
+    flex-flow: row wrap;
+    margin-bottom: 3%;
+  }
+
+  .highlights__image {
+    margin-top: -5%;
+  }
+ 
+  .article__description,
+  .highlights__description {
+    display : flex;
+  }
+
+.highlights__content {
+  display: flex;
+    flex-flow: row wrap;
+    max-width: 45%;
+  }
+
+.highlights__title {
+  max-width: 90%;
+  }
+
+  .category {
+    font-size: 24px;
+  }
 }
