@@ -5,10 +5,10 @@ const newsSections = document.querySelector('#categories__dropdown');
 const form = document.querySelector("#searchField");
 const input = document.querySelector('#form-box__input');
 const logo = document.querySelector('.nav-bar__title');
+const apikey = config.API_KEY
 
-const apikey = "09cd5587d3d84d849544b0097b798326"
-const topHeadlines = `https://newsapi.org/v2/top-headlines?country=gb&apiKey=${apikey}`;
-const newsCategories = `https://newsapi.org/v2/sources?country=gb&apiKey=${apikey}`;
+const topHeadlines = `https://content.guardianapis.com/search?api-key=${apikey}&show-fields=thumbnail`;
+const newsCategories = `http://content.guardianapis.com/editions?q=uk&api-key=${apikey}`
 
 function eventListeners() {
   document.querySelector(".fa-bars").addEventListener("click", () => {
@@ -28,28 +28,29 @@ function eventListeners() {
 }
 
 function parseMain(story) {
-  const { title, url, urlToImage, description } = story;
+  const { webTitle, sectionName, fields, webUrl } = story;
   return `
         <div class="article">
-          <div class="article__image">
-            <img src="${urlToImage ? urlToImage : "No image"}"/>
-          </div>
+        <div class="article__image">
+        <p class="article__title">${sectionName}</p>
+        <img src="${fields.thumbnail ? fields.thumbnail : "No image"}"/>
+      </div>
           <div class="article__content">
-            <a href="${url}" class="article__title">${title}</a>
-            <p class="article__description">${description ? description : "No description"} </p>
+            <a href="${webUrl}" class="article__title">${webTitle}</a>
+            <p class="article__description">${webTitle ? webTitle : "No description"} </p>
           </div>
-        </div >`;
+      </div >`;
 }
 
 function parseNews(news) {
   const parsed = news.slice(1).map(feed => {
-    const { title, url, urlToImage, description } = feed;
+    const { webTitle, webUrl, fields, sectionName } = feed;
     return `
         <div class="highlights">
-          <img src="${urlToImage ? urlToImage : "No image"}" class="highlights__image"/>
+          <img src="${fields.thumbnail ? fields.thumbnail : "No image"}" class="highlights__image"/>
           <div class="highlights__content">
-            <a href="${url}" class="highlights__title">${title} </a>
-            <p class="highlights__description">${description ? description : "No description"}</p>
+            <a href="${webUrl}" class="highlights__title">${webTitle} </a>
+            <p class="highlights__description">${sectionName}</p>
           </div>
         </div >`}).join("");
   return parsed;
@@ -66,11 +67,12 @@ function parseCategories(sources) {
 
 function parseNewsSearch(searched) {
   const parsed = searched.map(search => {
-    const { title, url, urlToImage } = search;
+    console.log("parsed ", searched)
+    const { webTitle, webUrl, fields } = search;
     return `
         <div class="highlights">
-          <img src="${urlToImage ? urlToImage : "No image"}" class="highlights__image"/>
-          <a href="${url}" class="highlights__title">${title} </a>
+          <img src="${fields.thumbnail ? fields.thumbnail : "No image"}" class="highlights__image"/>
+          <a href="${webUrl}" class="highlights__title">${webTitle} </a>
         </div >`}).join("");
   return parsed;
 }
@@ -81,9 +83,8 @@ function getLatestNews() {
       return res.json()
     })
     .then(data => {
-      console.log("data", data)
-      main_story.innerHTML = parseMain(data.articles[0])
-      breaking_news.innerHTML = parseNews(data.articles);
+      main_story.innerHTML = parseMain(data.response.results[0])
+      breaking_news.innerHTML = parseNews(data.response.results);
     });
 }
 
@@ -93,17 +94,20 @@ function newsByCategory() {
       return res.json()
     })
     .then(data => {
-      newsSections.innerHTML = parseCategories(data.sources)
+
+      newsSections.innerHTML = parseCategories(data.response.results)
     });
 }
 
 function userSearch(e) {
   e.preventDefault();
   const searchContent = input.value;
-  const newsByUser = `https://newsapi.org/v2/top-headlines?q=${searchContent}&apiKey=${apikey}`;
+  console.log("search content ", searchContent)
+  const newsByUser = `https://content.guardianapis.com/search?q=${searchContent}&order-by=relevance&api-key=93a5184c-0048-49b2-8f1c-202174fd3523&show-fields=thumbnail`
+
   fetch(`${newsByUser}`)
     .then(res => res.json())
-    .then(data => searchedNews.innerHTML = parseNewsSearch(data.articles));
+    .then(data => searchedNews.innerHTML = parseNewsSearch(data.response.results));
 
   clearArea();
   toggleContent();

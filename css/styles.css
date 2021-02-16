@@ -233,9 +233,9 @@ input {
   font-weight: 700;
 }
 
-.highlights__description {
+/* .highlights__description {
   display: none;
-}
+} */
 
 @media only screen and (min-width: 768px) and (max-width: 1200px) {
 
